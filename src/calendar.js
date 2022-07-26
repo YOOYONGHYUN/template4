@@ -96,7 +96,7 @@ const render = () => {
     sunday += 7;
   }
 
-  //현재 날짜 표시해주기
+  //현재 날짜 초록색 원으로 표시해주기
   let presentDate = new Date();
   //   console.log(presentDate);
   //   console.log(presentDate.getMonth());
@@ -113,7 +113,7 @@ const render = () => {
     a.style.borderRadius = "50%";
   }
 
-  //mouseover시 클래스 추가 & 닐짜 찍으면 date-picker에 render
+  //mouseover시 클래스 추가 & 날짜 찍으면 date-picker에 render
   let hoverDate = document.querySelectorAll(".date");
   for (let i = 0; i < hoverDate.length; i++) {
     hoverDate[i].addEventListener("mouseover", function () {
