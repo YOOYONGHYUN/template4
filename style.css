@@ -9,13 +9,17 @@ body {
   padding: 20px 20px;
   background-color: rgb(230, 230, 230);
 }
-
+/* 
 html {
   font-size: 62.5%;
-}
+} */
 
 h1 {
   color: rgba(199, 63, 63, 0.44);
+}
+
+:root {
+  --calendar-size: 210px;
 }
 
 .date-picker {
@@ -32,9 +36,12 @@ h1 {
 }
 
 .calendar {
-  width: 200px;
+  width: var(--calendar-size);
+  min-width: 200px;
   /*visibility로 설정하면 초기 렌더링 시에 현재 날짜를 나타내는 초록색 원이 안생기는데 이유를 모르겠다... */
   display: none;
+  font-size: calc(var(--calendar-size) * 0.05);
+  box-shadow: 0px 0px 10px 3px rgb(199, 198, 198);
 }
 
 .calendar-nav {
@@ -42,7 +49,8 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 0px 15px;
-  height: 45px;
+  height: calc(var(--calendar-size) * 0.225);
+  min-height: 45px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #44c379;
@@ -62,6 +70,8 @@ h1 {
 }
 
 .calendar-grid {
+  height: calc(var(--calendar-size) * 1.1);
+  min-height: 231px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: rgb(250, 250, 250);
@@ -86,6 +96,10 @@ h1 {
 .pre-date,
 .next-date {
   opacity: 30%;
+}
+
+i {
+  size: 40px;
 }
 
 i,
