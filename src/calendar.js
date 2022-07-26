@@ -113,7 +113,7 @@ const render = () => {
     a.style.borderRadius = "50%";
   }
 
-  //mouseover시 클래스 추가 & 날짜 찍으면 date-picker에 render
+  //mouseover시 클래스 추가
   let hoverDate = document.querySelectorAll(".date");
   for (let i = 0; i < hoverDate.length; i++) {
     hoverDate[i].addEventListener("mouseover", function () {
@@ -123,12 +123,48 @@ const render = () => {
     hoverDate[i].addEventListener("mouseout", function () {
       hoverDate[i].classList.remove("hovered");
     });
+  }
+  //날짜 찍으면 date-picker에 render
+  let pickerYear = date.getFullYear();
 
-    hoverDate[i].addEventListener("click", function () {
-      let pickerYear = date.getFullYear();
+  //전달에 포함된 날짜 찍을시
+  let pre = document.querySelectorAll(".pre-date");
+  for (let i = 0; i < pre.length; i++) {
+    pre[i].addEventListener("click", function () {
+      let pickerMonth = date.getMonth();
+      let pickerDate = pre[i].innerText;
+      document.querySelector(
+        ".date-picker"
+      ).value = `${pickerYear}-${pickerMonth
+        .toString()
+        .padStart(2, "0")}-${pickerDate.toString().padStart(2, "0")}`;
+
+      document.querySelector(".calendar").classList.remove("show");
+    });
+  }
+
+  //이번달에 포함된 날짜 찍을시
+  let present = document.querySelectorAll(".present-date");
+  for (let i = 0; i < present.length; i++) {
+    present[i].addEventListener("click", function () {
       let pickerMonth = date.getMonth() + 1;
-      let pickerDate = hoverDate[i].innerText;
+      let pickerDate = present[i].innerText;
+      document.querySelector(
+        ".date-picker"
+      ).value = `${pickerYear}-${pickerMonth
+        .toString()
+        .padStart(2, "0")}-${pickerDate.toString().padStart(2, "0")}`;
 
+      document.querySelector(".calendar").classList.remove("show");
+    });
+  }
+
+  //다음달에 포함된 날짜 찍을시
+  let next = document.querySelectorAll(".next-date");
+  for (let i = 0; i < next.length; i++) {
+    next[i].addEventListener("click", function () {
+      let pickerMonth = date.getMonth() + 2;
+      let pickerDate = next[i].innerText;
       document.querySelector(
         ".date-picker"
       ).value = `${pickerYear}-${pickerMonth
