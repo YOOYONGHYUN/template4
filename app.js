@@ -1,4 +1,4 @@
-import { render, date } from "./src/index.js";
+import { render, date } from "./src/calendar.js";
 
 document.querySelector(".fa-caret-left").addEventListener("click", function () {
   date.setMonth(date.getMonth() - 1);
@@ -13,3 +13,15 @@ document
   });
 
 render();
+
+document.querySelector(".date-picker").addEventListener("click", function () {
+  document.querySelector(".calendar").classList.add("show");
+});
+
+document.addEventListener("mouseup", function (e) {
+  console.log(e.target);
+  let calendar = document.querySelector(".calendar");
+  if (!calendar.contains(e.target)) {
+    calendar.classList.remove("show");
+  }
+});

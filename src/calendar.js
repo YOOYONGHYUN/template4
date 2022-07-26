@@ -50,6 +50,7 @@ const render = () => {
   date.setDate(1);
   for (let i = date.getDay(); i > 0; i--) {
     let div = document.createElement("div");
+    div.classList.add("date");
     div.classList.add("pre-date");
     div.innerText = `${prevDate - i + 1}`;
     document.querySelector(".calendar-grid").appendChild(div);
@@ -57,6 +58,7 @@ const render = () => {
 
   for (let i = 0; i < lastDay; i++) {
     let div = document.createElement("div");
+    div.classList.add("date");
     div.classList.add("present-date");
     div.innerText = `${i + 1}`;
     document.querySelector(".calendar-grid").appendChild(div);
@@ -66,6 +68,7 @@ const render = () => {
   let count = 1;
   for (let i = 0; i < 49 - length; i++) {
     let div = document.createElement("div");
+    div.classList.add("date");
     div.classList.add("next-date");
     div.innerText = `${count}`;
     count++;
@@ -87,20 +90,49 @@ const render = () => {
   while (sunday <= lastDay) {
     document.querySelectorAll(".present-date")[sunday - 1].style.color = "red";
     sunday += 7;
-    // console.log("an");
   }
 
+  //현재 날짜 표시해주기
   let presentDate = new Date();
   //   console.log(presentDate);
   //   console.log(presentDate.getMonth());
   //   console.log(presentDate.getDate());
   //   console.log(p[0].innerText);
   //   console.log(months[presentDate.getMonth()]);
-  if (p[0].innerText == months[presentDate.getMonth()]) {
+  if (
+    p[0].innerText == months[presentDate.getMonth()] &&
+    p[1].innerText == presentDate.getFullYear()
+  ) {
     let a =
       document.querySelectorAll(".present-date")[presentDate.getDate() - 1];
-    a.style.border = "solid 1px #a52a2a70";
+    a.style.border = "solid 1px #44c379";
     a.style.borderRadius = "50%";
+  }
+
+  //mouseover시 클래스 추가 & 닐짜 찍으면 date-picker에 render
+  let hoverDate = document.querySelectorAll(".date");
+  for (let i = 0; i < hoverDate.length; i++) {
+    hoverDate[i].addEventListener("mouseover", function () {
+      hoverDate[i].classList.add("hovered");
+    });
+
+    hoverDate[i].addEventListener("mouseout", function () {
+      hoverDate[i].classList.remove("hovered");
+    });
+
+    hoverDate[i].addEventListener("click", function () {
+      let pickerYear = date.getFullYear();
+      let pickerMonth = date.getMonth() + 1;
+      let pickerDate = hoverDate[i].innerText;
+
+      document.querySelector(
+        ".date-picker"
+      ).value = `${pickerYear}-${pickerMonth
+        .toString()
+        .padStart(2, "0")}-${pickerDate.toString().padStart(2, "0")}`;
+
+      document.querySelector(".calendar").classList.remove("show");
+    });
   }
 };
 
