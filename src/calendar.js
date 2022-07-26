@@ -40,6 +40,7 @@ const render = () => {
   const prevDate = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
   console.log(prevDate);
 
+  //day 채우기
   for (let i = 0; i < 7; i++) {
     let div = document.createElement("div");
     div.classList.add("weekday");
@@ -47,6 +48,7 @@ const render = () => {
     document.querySelector(".calendar-grid").appendChild(div);
   }
 
+  //이전 달의 날짜 채우기
   date.setDate(1);
   for (let i = date.getDay(); i > 0; i--) {
     let div = document.createElement("div");
@@ -56,6 +58,7 @@ const render = () => {
     document.querySelector(".calendar-grid").appendChild(div);
   }
 
+  //이번달의 날짜 채우기
   for (let i = 0; i < lastDay; i++) {
     let div = document.createElement("div");
     div.classList.add("date");
@@ -64,6 +67,7 @@ const render = () => {
     document.querySelector(".calendar-grid").appendChild(div);
   }
 
+  //다음달의 날짜 채우기
   let length = document.querySelector(".calendar-grid").childNodes.length;
   let count = 1;
   for (let i = 0; i < 49 - length; i++) {
