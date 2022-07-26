@@ -1,4 +1,5 @@
 import { render, date } from "./src/calendar.js";
+import show from "./src/show.js";
 
 //이전달로 가기
 document.querySelector(".fa-caret-left").addEventListener("click", function () {
@@ -14,16 +15,8 @@ document
     render();
   });
 
+//현재 날짜 render
 render();
 
-document.querySelector(".date-picker").addEventListener("click", function () {
-  document.querySelector(".calendar").classList.add("show");
-});
-
-document.addEventListener("mouseup", function (e) {
-  console.log(e.target);
-  let calendar = document.querySelector(".calendar");
-  if (!calendar.contains(e.target)) {
-    calendar.classList.remove("show");
-  }
-});
+//picker input창에 render
+show();
