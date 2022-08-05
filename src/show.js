@@ -1,11 +1,12 @@
-const show = () => {
-  document.querySelector(".date-picker").addEventListener("click", function () {
-    document.querySelector(".calendar").classList.add("show");
-  });
+const show = (container) => {
+  container
+    .querySelector(".date-picker")
+    .addEventListener("click", function () {
+      container.querySelector(".calendar").classList.add("show");
+    });
 
   document.addEventListener("mouseup", function (e) {
-    console.log(e.target);
-    let calendar = document.querySelector(".calendar");
+    let calendar = container.querySelector(".calendar");
     if (!calendar.contains(e.target)) {
       calendar.classList.remove("show");
     }

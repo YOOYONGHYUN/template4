@@ -16,25 +16,27 @@
     />
   </head>
   <body>
-    <h1 class="title">Date Picker</h1>
-    <input
-      type="text"
-      class="date-picker"
-      placeholder="Select Date"
-      value=""
-      readonly
-    />
+    <div class="container">
+      <h1 class="title">Date Picker</h1>
+      <input
+        type="text"
+        class="date-picker"
+        placeholder="Select Date"
+        value=""
+        readonly
+      />
 
-    <div class="calendar">
-      <div class="calendar-nav">
-        <i class="fa-solid fa-caret-left fa-2x"></i>
-        <div class="calendar-nav-txt">
-          <p></p>
-          <p></p>
+      <div class="calendar">
+        <div class="calendar-nav">
+          <i class="fa-solid fa-caret-left fa-2x"></i>
+          <div class="calendar-nav-txt">
+            <p></p>
+            <p></p>
+          </div>
+          <i class="fa-solid fa-caret-right fa-2x"></i>
         </div>
-        <i class="fa-solid fa-caret-right fa-2x"></i>
+        <div class="calendar-grid"></div>
       </div>
-      <div class="calendar-grid"></div>
     </div>
 
     <script type="module" src="app.js"></script>
