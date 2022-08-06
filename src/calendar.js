@@ -30,17 +30,6 @@ const render = (container) => {
   p[0].innerText = months[date.getMonth()];
   p[1].innerText = date.getFullYear();
 
-  //날짜 채우기
-  const lastDay = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDate();
-  console.log(lastDay);
-
-  const prevDate = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-  console.log(prevDate);
-
   //day 채우기
   for (let i = 0; i < days.length; i++) {
     let div = document.createElement("div");
@@ -50,6 +39,9 @@ const render = (container) => {
   }
 
   //이전 달의 날짜 채우기
+  const prevDate = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+  console.log(prevDate);
+
   date.setDate(1);
   for (let i = date.getDay(); i > 0; i--) {
     let div = document.createElement("div");
@@ -60,6 +52,13 @@ const render = (container) => {
   }
 
   //이번달의 날짜 채우기
+  const lastDay = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+  console.log(lastDay);
+
   for (let i = 0; i < lastDay; i++) {
     let div = document.createElement("div");
     div.classList.add("date");
@@ -185,6 +184,9 @@ const next = (container) => {
       date.setMonth(date.getMonth() + 1);
       render(container);
     });
+
+  //동적으로 width 설정.
+  document.querySelector(".calendar").style.setProperty("--calendar-size", 210);
 };
 
 export { render, next, previous };
